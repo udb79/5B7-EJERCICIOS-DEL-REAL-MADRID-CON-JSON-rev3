@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Lista jugadores R.Madrid</h1>
+    <button id="boton" >Cargar Lista Jugadores</button>
+    <ol id="lista-jugadores">
+
+    </ol>
+    
+    <script>
+
+        fetch('rmadrid-3.json')
+        .then(response => response.json())
+        .then(equipo => {
+
+            document.getElementById("boton").addEventListener("click", cargarLista)
+
+            function cargarLista(){
+
+                document.getElementById("lista-jugadores").innerHTML = "";
+
+                for( let i = 0 ; i < equipo.jugadores.length ; i++ ){
+
+                    let nuevoLi = document.createElement("li");
+                    nuevoLi.innerHTML = equipo.jugadores[i];
+                    nuevoLi.setAttribute("style", "color: red;");
+                    document.getElementById("lista-jugadores").appendChild(nuevoLi);
+                }
+
+            }
+
+        });
+
+        document.getElementById("boton").addEventListener("click", cargarLista)
+        
+    </script>
+</body>
+</html>
